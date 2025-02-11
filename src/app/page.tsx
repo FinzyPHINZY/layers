@@ -1,3 +1,5 @@
+'use client';
+
 import CallToAction from '@/sections/CallToAction';
 import Faqs from '@/sections/Faqs';
 import Features from '@/sections/Features';
