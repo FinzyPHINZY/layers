@@ -1,25 +1,95 @@
 import Button from '@/components/Button';
 import designExample1Image from '@/assets/images/design-example-1.png';
 import designExample2Image from '@/assets/images/design-example-2.png';
+import cursorImage from '@/assets/images/cursor-you.svg';
 import Image from 'next/image';
 import Pointer from '@/components/Pointer';
+import { motion, useAnimate } from 'framer-motion';
+import { useEffect } from 'react';
 
 export default function Hero() {
+  const [leftDesignScope, leftDesignAnimate] = useAnimate();
+  const [leftPointerScope, leftPointerAnimate] = useAnimate();
+  const [rightDesignScope, rightDesignAnimate] = useAnimate();
+  const [rightPointerScope, rightPointerAnimate] = useAnimate();
+
+  useEffect(() => {
+    leftDesignAnimate([
+      [leftDesignScope.current, { opacity: [0, 1] }, { duration: 0.5 }],
+      [leftDesignScope.current, { y: 0, x: 0 }, { duration: 0.5 }],
+    ]);
+
+    leftPointerAnimate([
+      [leftPointerScope.current, { opacity: 1 }, { duration: 0.5 }],
+      [leftPointerScope.current, { y: 0, x: -100 }, { duration: 0.5 }],
+      [
+        leftPointerScope.current,
+        { x: 0, y: [0, 16, 0] },
+        { duration: 0.5, ease: 'easeInOut' },
+      ],
+    ]);
+
+    rightDesignAnimate([
+      [rightDesignScope.current, { opacity: 1 }, { duration: 0.5, delay: 1.5 }],
+      [rightDesignScope.current, { y: 0, x: 0 }, { duration: 0.5 }],
+    ]);
+
+    rightPointerAnimate([
+      [rightPointerScope.current, { opacity: 1 }, { duration: 1.5 }],
+      [rightPointerScope.current, { x: 175, y: 0 }, { duration: 0.5 }],
+      [
+        rightPointerScope.current,
+        { x: 0, y: [0, 20, 0] },
+        { duration: 0.5, ease: 'easeInOut' },
+      ],
+    ]);
+  }, []);
+
   return (
-    <section className="py-24 overflow-x-clip">
+    <section
+      className="py-24 overflow-x-clip"
+      style={{ cursor: `url(${cursorImage.src}), auto` }}
+    >
       <div className="container relative">
-        <div className="absolute top-16 -left-32 hidden lg:block">
-          <Image src={designExample1Image} alt="Design example 1 image" />
-        </div>
-        <div className="absolute -right-64 -top-16 hidden lg:block">
-          <Image src={designExample2Image} alt="Design example 2 image" />
-        </div>
-        <div className="absolute left-56 top-96  hidden lg:block">
+        <motion.div
+          ref={leftDesignScope}
+          initial={{ opacity: 1, y: 100, x: -100 }}
+          drag
+          className="absolute top-16 -left-32 hidden lg:block"
+        >
+          <Image
+            src={designExample1Image}
+            alt="Design example 1 image"
+            draggable="false"
+          />
+        </motion.div>
+        <motion.div
+          ref={leftPointerScope}
+          initial={{ opacity: 0, y: 100, x: -200 }}
+          className="absolute left-56 top-96  hidden lg:block"
+        >
           <Pointer name="Boluwatife" />
-        </div>
-        <div className="absolute right-80 -top-4 hidden lg:block">
-          <Pointer name="Bruno" color="red" />
-        </div>
+        </motion.div>
+        <motion.div
+          ref={rightDesignScope}
+          initial={{ opacity: 0, y: 100, x: 100 }}
+          drag
+          className="absolute -right-64 -top-16 hidden lg:block"
+        >
+          <Image
+            src={designExample2Image}
+            alt="Design example 2 image"
+            draggable="false"
+          />
+        </motion.div>
+
+        <motion.div
+          ref={rightPointerScope}
+          initial={{ opacity: 0, x: 275, y: 100 }}
+          className="absolute right-80 -top-4 hidden lg:block"
+        >
+          <Pointer name="Toria" color="red" />
+        </motion.div>
         <div className="flex justify-center ">
           <div className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full text-neutral-950 font-semibold">
             ✨ $7.5M seed round raised
