@@ -16,6 +16,13 @@ export default function Footer() {
             <Image src={logoImage} alt="logo" className="" />
           </div>
           <div className="">
+            <p className="text-white/50 hover:text-lime-400 hover:underline">
+              <a href="https://finzyphinzy.vercel.app" className="">
+                Boluwatife Adeyemi
+              </a>
+            </p>
+          </div>
+          <div className="">
             <nav className="flex gap-6">
               {footerLinks.map((link, i) => (
                 <a href={link.href} className="text-white/50 text-sm" key={i}>
