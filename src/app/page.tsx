@@ -20,7 +20,7 @@ export default function Home() {
       <Features />
       <Integrations />
       <Faqs />
-      <CallToAction />
+      {/* <CallToAction /> */}
       <Footer />
     </>
   );
