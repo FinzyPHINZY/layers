@@ -24,7 +24,7 @@ A sleek, modern landing page for a fictional design tool called Layers, built wi
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/layers-landing-page.git
+git clone https://github.com/finzyphinzy/layers.git
 ```
 
 ````
@@ -32,7 +32,7 @@ git clone https://github.com/yourusername/layers-landing-page.git
 2. Install dependencies:
 
 ```bash
-cd layers-landing-page
+cd layers
 npm install
 ```
 
